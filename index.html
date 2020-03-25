@@ -1,6 +1,8 @@
 <html>
     <head>
+        <title>Mulch Volume Calculator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="./manifest.webmanifest">
     </head>
     <body id="mulch-calculator">
 
@@ -36,5 +38,15 @@
         </main>
 
         <script src="index.js"></script>
+        <script>
+            if ("serviceWorker" in navigator) {
+                    window.addEventListener("load", function () {
+                        navigator.serviceWorker
+                            .register("/sw.js")
+                            .then(res => console.log("service worker registered"))
+                            .catch(err => console.log("service worker not registered", err))
+                    })
+                }
+        </script>
     </body>
 </html>

@@ -6,20 +6,20 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "heroku": "heroku git:remote -a mulch-calculator"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
     "bootstrap": "^4.4.1",
+    "cache-polyfill": "^1.0.1",
     "jquery": "^3.4.1",
     "parcel": "^1.12.4",
-    "popper.js": "^1.16.1",
-    "@fortawesome/fontawesome-free": "^5.12.1",
     "parcel-bundler": "^1.12.4",
+    "popper.js": "^1.16.1",
     "sass": "^1.26.2"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

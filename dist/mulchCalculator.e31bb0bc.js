@@ -18144,6 +18144,52 @@ require("@fortawesome/fontawesome-free/css/all.css");
 
 require("./main.scss");
 
+function validate(_ref) {
+  var lEl = _ref.lEl,
+      wEl = _ref.wEl,
+      dEl = _ref.dEl;
+  var l = parseFloat(lEl.value);
+  var w = parseFloat(wEl.value);
+  var d = parseFloat(dEl.value);
+  var errors = {
+    l: false,
+    w: false,
+    d: false
+  };
+
+  if (!l) {
+    lEl.classList.add('error');
+    errors.l = true;
+  } else {
+    lEl.classList.remove('error');
+    errors.l = false;
+  }
+
+  if (!w) {
+    wEl.classList.add('error');
+    errors.w = true;
+  } else {
+    wEl.classList.remove('error');
+    errors.w = false;
+  }
+
+  if (!d) {
+    dEl.classList.add('error');
+    errors.d = true;
+  } else {
+    dEl.classList.remove('error');
+    errors.d = false;
+  }
+
+  if (errors.l || errors.w || errors.d) {
+    return;
+  }
+
+  var result = l * w * d / 324;
+  var target = document.querySelector('#result-target');
+  target.innerHTML = "You need to buy ".concat(Math.ceil(result), " cu ft (").concat(Math.ceil(result / 3), " cu yrd) of mulch.");
+}
+
 var app = function app() {
   var lEl = document.querySelector('#mulch-length-input');
   var wEl = document.querySelector('#mulch-width-input');
@@ -18154,41 +18200,11 @@ var app = function app() {
     d: false
   };
   document.querySelector('#mulch-submit-btn').addEventListener('click', function () {
-    var l = parseFloat(lEl.value);
-    var w = parseFloat(wEl.value);
-    var d = parseFloat(dEl.value);
-
-    if (!l) {
-      lEl.classList.add('error');
-      errors.l = true;
-    } else {
-      lEl.classList.remove('error');
-      errors.l = false;
-    }
-
-    if (!w) {
-      wEl.classList.add('error');
-      errors.w = true;
-    } else {
-      wEl.classList.remove('error');
-      errors.w = false;
-    }
-
-    if (!d) {
-      dEl.classList.add('error');
-      errors.d = true;
-    } else {
-      dEl.classList.remove('error');
-      errors.d = false;
-    }
-
-    if (errors.l || errors.w || errors.d) {
-      return;
-    }
-
-    var result = l * w * d / 324;
-    var target = document.querySelector('#result-target');
-    target.innerHTML = "You need to buy ".concat(Math.ceil(result), " cu ft (").concat(Math.ceil(result / 3), " cu yrd) of mulch.");
+    validate({
+      lEl: lEl,
+      wEl: wEl,
+      dEl: dEl
+    });
   });
 };
 
@@ -18226,7 +18242,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53589" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60032" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
